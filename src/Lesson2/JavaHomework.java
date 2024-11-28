@@ -4,7 +4,7 @@ import java.sql.SQLOutput;
 
 public class JavaHomework {
     public static void main(String[] args) {
-        enterTask4();
+        enterTask5();
     }
         public static void enterTask() {
             int valueVeriableLow = 10;
@@ -19,7 +19,7 @@ public class JavaHomework {
             System.out.print(valueMin + valueMax);
             }
         public static void enterTask3(){
-         int valueNamberOut = 159;
+         int valueNumberOut = 159;
          int valueMeaningMin = 1;
          int valueMeaningMid = 5;
          int valueMeaningMax = 9;
@@ -30,6 +30,13 @@ public class JavaHomework {
          float valueNumber = 30.5F;
          int valueNumber = 30
          System.out.print(valueNumber );
+
+         public static void enterTask5(){
+             double valueNamber = 1.5();
+             int valueMeaning =(int)(valueNamber+0.5);
+                System.out.println(valueNamber);
+
+            }
         }
         }
 
