@@ -26,18 +26,18 @@ public class JavaHomework {
          System.out.print(valueMeaningMin + valueMeaningMid + valueMeaningMax);
            }
 
-        public static void enterTask4(){
-         float valueNumber = 30.5F;
-         int valueNumber = 30
-         System.out.print(valueNumber );
+        public static void enterTask4() {
+            float valueNumber = 30.5F;
+            int valueNumber = 30;
+            System.out.print(valueNumber);
+        }
 
          public static void enterTask5(){
-             double valueNamber = 1.5();
-             int valueMeaning =(int)(valueNamber+0.5);
-                System.out.println(valueNamber);
-
+             double valueNamberDouble = 1.5;
+             int valueMeaning =(int)(valueNamberDouble+0.5);
+                System.out.println(valueNamberDouble);
             }
         }
-        }
+
 
 
