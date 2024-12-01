@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Lesson_3_homework {
     public static void main(String[] args) {
-        enterTask4();
+        enterTask5();
     }
 
     public static void enterTask1() {
@@ -57,6 +57,27 @@ public class Lesson_3_homework {
     }
 
     public static void enterTask5(){
+      Scanner scanner = new Scanner(System.in);
+         int number;
+         long sum = 0;
+
+         while (true){
+             System.out.print("Please,enter your number: ");
+             if (scanner.hasNext()){
+                 number= scanner.nextInt();
+                 if (number > 0) {
+                     break;
+                 }else{
+                     System.out.println("The number must be positive.");
+                 }
+             }else{
+                 System.out.println("Please enter an integer.");
+                 scanner.next();
+             }
+         }
+         sum = (long) number * (number + 1)/2;
+        System.out.println("Sum number " + number + " equal to " + sum);
+        scanner.close();
 
     }
 }
