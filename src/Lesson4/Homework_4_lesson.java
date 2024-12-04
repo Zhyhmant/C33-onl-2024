@@ -1,8 +1,10 @@
 package Lesson4;
 
+import java.util.Arrays;
+
 public class Homework_4_lesson {
     public static void main(String[] arg) {
-        enterTak4();
+        enterTask6();
     }
 
     public static void useTest() {
@@ -77,10 +79,52 @@ public class Homework_4_lesson {
         System.out.println("Maximum index: " + maxIndex);
     }
 
-    public static void enterTak4(){
+    public static void enterTak4() {
         int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,};
+        int calculate = 0;
+
+        for (int number : array) {
+            if (number == 0) {
+                calculate++;
+            }
+        }
+        if (calculate > 0) {
+            System.out.println("The number of zero elements: " + calculate);
+        } else {
+            System.out.println("There are no zero elements.");
+        }
+        ;
+    }
+
+    public static void enterTask5() {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,};
+        int variableLength = array.length;
+        for (int valueVariable = 0; valueVariable < variableLength / 2; valueVariable++) {
+            int temp = array[valueVariable];
+            array[valueVariable] = array[variableLength - 1 - valueVariable];
+            array[variableLength - 1 - valueVariable] = temp;
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+    public static void enterTask6() {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,};
+        for (int i = 0; i < array.length; i++)
+            System.out.println(Arrays.toString(array));
+
+        boolean flag = true;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] <= array[i - 1]) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            System.out.println("Массив является строго возрастающей последовательностью");
+        } else {
+            System.out.println("Массив не является строго возрастающей последовательностью");
+        }
+
 
     }
 }
-
-
