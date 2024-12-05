@@ -109,9 +109,6 @@ public class Homework_4_lesson {
 
     public static void enterTask6() {
         int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,};
-        for (int i = 0; i < array.length; i++)
-            System.out.println(Arrays.toString(array));
-
         boolean flag = true;
         for (int i = 1; i < array.length; i++) {
             if (array[i] <= array[i - 1]) {
@@ -120,11 +117,13 @@ public class Homework_4_lesson {
             }
         }
         if (flag) {
-            System.out.println("Массив является строго возрастающей последовательностью");
+            System.out.println("The array is a strictly increasing sequence");
         } else {
-            System.out.println("Массив не является строго возрастающей последовательностью");
+            System.out.println("The array is not a strictly increasing sequence");
         }
 
 
     }
-}
+
+
+    }
