@@ -3,58 +3,65 @@ package com_game_guessword;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import java.lang.String;
+
 
 public class game_guessword {
+    private static final int MAX_ATTEMPTS = 2;
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        startGame();
-
-
-        if (getInput().nextLine().equals("y")) {
-            getMessage();
-        } else {
-            System.out.println("Goodbye, come back.");
-            return;
-        }
-
+        boolean playAgain = true;
+        do {
+            startGame();
+            playAgain = askPlayAgain();
+        } while (playAgain);
+        scanner.close();
     }
 
+
     public static void startGame() {
-        welcome();
 
         char[] hiddenWord = getHiddenWords().toCharArray();
-        char[] openWord = new char[hiddenWord.length];
-        Arrays.fill(openWord, 0, openWord.length, '*');
+        char[] displayedWord = new char[hiddenWord.length];
+        Arrays.fill(displayedWord, 0,displayedWord.length,'*');
+        StringBuilder usedLetters = new StringBuilder();
+        int attemptsRemaining = MAX_ATTEMPTS;
 
-
+        welcome();
         playOrNot();
-        if (getInput().nextLine().equals("y")) {
+        
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
             getMessage();
-            printWord(openWord);
-            getInputMsg();
 
-            while (true) {
-                String input = getInput().nextLine();
+            while (attemptsRemaining > 0 && !Arrays.equals(displayedWord, hiddenWord)) {
+                System.out.println("\nThere are still attempts left: " + attemptsRemaining);
+                printWord(displayedWord);
+                System.out.print("The letters used: " + usedLetters + "\nEnter a letter or word: ");
+                String input = scanner.nextLine().toLowerCase();
+
                 if (input.length() == 0) {
-                    System.out.print("You have not entered a letter, please enter a letter");
+                    System.out.println("You haven't entered anything!");
                     continue;
                 } else if (input.length() == 1) {
-                    checkleater();
-                    break;
-                } else if (input.length() > 1) {
-                 if  (checkWord(input, hiddenWord)){
-                     return;
-                 }
-
-
-
+                    if (!Character.isLetter(input.charAt(0))) {
+                        System.out.println("Incorrect input! Enter a letter.");
+                        continue;
+                    }
+                    checkLetter(input.charAt(0), hiddenWord, displayedWord, usedLetters);
+                } else {
+                    if (checkWord(input, hiddenWord)) {
+                        break;
+                    }
                 }
+                attemptsRemaining--;
             }
-        } else {
-            System.out.println("Goodbye, come back.");
-            return;
+
+            if (Arrays.equals(displayedWord, hiddenWord)) {
+                getWonMessage();
+            } else {
+                System.out.println();
+            }
         }
-
-
     }
 
     public static void welcome() {
@@ -70,20 +77,20 @@ public class game_guessword {
 
     }
 
-    public static String[] getWordsFriuts() {
+    public static String[] getWordsFruits() {
         return new String[]{
-                "Apple",
-                "Peach",
-                "Banana",
-                "Coconut",
-                "Apricot",
-                "Pineapple",
+                "apple",
+                "peach",
+                "banana",
+                "coconut",
+                "apricot",
+                "pineapple",
 
         };
     }
 
     public static String getHiddenWords() {
-        String[] hiddenWord = getWordsFriuts();
+        String[] hiddenWord = getWordsFruits();
 
         return hiddenWord[new Random().nextInt(0, hiddenWord.length)];
     }
@@ -99,38 +106,51 @@ public class game_guessword {
         System.out.print("If you want to start the game, press |Y|, if you exit any key...\u001B[0m");
     }
 
-    public static Scanner getInput() {
-        return new Scanner(System.in);
-    }
-
     public static void getMessage() {
         System.out.println("\u001B[32m|||||||||||||||||||||||||");
         System.out.println("The word is invented, start playing\u001B[0m");
     }
 
-    public static void getInputMsg() {
-        System.out.println("You see a hidden word in front of you, please enter the letter or the whole word");
-    }
 
-    public static void checkleater() {
-
+    public static boolean checkLetter(char letter, char[] hiddenWord, char[] displayedWord, StringBuilder usedLetters) {
+        if (usedLetters.indexOf(String.valueOf(letter)) != -1) {
+            System.out.println("This letter has already been used!");
+            return false;
+        }
+        usedLetters.append(letter);
+        boolean letterFound = false;
+        for (int i = 0; i < hiddenWord.length; i++) {
+            if (hiddenWord[i] == letter && displayedWord[i] == '*') {
+                displayedWord[i] = letter;
+                letterFound = true;
+            }
+        }
+        if (!letterFound) {
+            System.out.println("There is no such letter in the word.");
+        }
+        return letterFound;
     }
 
     public static boolean checkWord(String input, char[] hiddenWord) {
-        System.out.println("You have entered a word: " + input);
-        System.out.println("Your hidden word equals: " + Arrays.toString(hiddenWord));
-
-        if (!Arrays.equals(input.toCharArray(), hiddenWord)) {
-            System.out.println("You have entered wrong word.");
-        }else{
-            getWonMassage();
+        if (input.equalsIgnoreCase(new String(hiddenWord))) {
+            getWonMessage();
             return true;
+        } else {
+            System.out.println("The wrong word!");
+            return false;
         }
-        return false;
     }
 
-    public static void getWonMassage(){
-        System.out.print("\u001B[31mYOU WON !!!Congratulations\u001B[0m");
-        System.out.println("\u001B[41mPLEASE ENTER\u001B[0m");
+    public static void getWonMessage() {
+        System.out.println("\u001B[31mVICTORY!!!Congratulations!!!\u001B[0m");
+    }
+
+    public static boolean askPlayAgain(){
+        System.out.print("\u001B[33mDo you want to play again? (y/n): \u001B[0m");
+        String answer = scanner.nextLine().trim().toLowerCase();
+        System.out.println();
+        return answer.equals("y");
     }
 }
+
+
