@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CalorieCounterApp {
     private static final Scanner scanner = new Scanner(System.in);
     private static User currentuser;
+    private static String[] parts;
 
     public static void main(String[] args) {
         login();
@@ -59,8 +60,29 @@ public class CalorieCounterApp {
         private static void addMeal(){
         Meal meal = new Meal();
         while (true){
-            
-        }
-        }
-    }
+            System.out.println("Add foods to a meal (for example: bread 100 20, milk 80 200, or 'done'):");
+            String input = scanner.nextLine();
+            if(input.equalsIgnoreCase("done")){
+                break;
+            }
+            String[] parts = input.split(" ");
+            if (parts.length != 3){
+                System.out.println("Incorrect input! Enter the 'calorie product_n_100g gramovka'. Try again");
 
+            continue;
+        }
+        try{
+            String name = parts[0];
+            double calories = Double.parseDouble(parts[1]);
+            double grams = Double.parseDouble(parts[2]);
+            FoodItem foodItem = new FoodItem(name,calories,grams);
+            meal.addItem(foodItem);
+        }catch (NumberFormatException e){
+            System.out.println("Incorrect input !Please enter An integer");
+        }
+
+        }
+        currentuser.addMeal(meal);
+        System.out.println(meal);
+    }
+}
