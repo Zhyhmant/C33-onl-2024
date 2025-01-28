@@ -1,4 +1,4 @@
-package TictacToe_OOP;
+package TictacToe_OOP.Game;
 
 public abstract class Player {
     protected char marker;
@@ -11,5 +11,6 @@ public abstract class Player {
     public char getMarker(){
         return marker;
     }
+
 }
 

@@ -1,4 +1,4 @@
-package TictacToe_OOP;
+package TictacToe_OOP.Game;
 
 import java.util.Random;
 import java.util.Scanner;

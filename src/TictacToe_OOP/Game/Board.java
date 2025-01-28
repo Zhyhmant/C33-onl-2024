@@ -1,7 +1,7 @@
-package TictacToe_OOP;
+package TictacToe_OOP.Game;
 
 public class Board {
-    private char[][] board;
+    private final char[][] board;
 
     public Board() {
         board = new char[][]{
@@ -24,10 +24,10 @@ public class Board {
 
     public boolean setMove(int row, int col, char marker) {
         if (row < 0 || row > 2 || col < 0 || col > 2 || board[row][col] != '*') {
-            return false;
+            return true;
         }
         board[row][col] = marker;
-        return true;
+        return false;
     }
 
 

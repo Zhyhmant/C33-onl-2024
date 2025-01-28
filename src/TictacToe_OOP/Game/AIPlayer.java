@@ -1,4 +1,4 @@
-package TictacToe_OOP;
+package TictacToe_OOP.Game;
 
 import java.util.Random;
 
@@ -16,7 +16,7 @@ public class AIPlayer extends Player {
         do {
             row = random.nextInt(3);
             col = random.nextInt(3);
-        } while (!board.setMove(row, col, marker));
+        } while (board.setMove(row, col, marker));
         System.out.println("AI сделал ход.");
     }
 }

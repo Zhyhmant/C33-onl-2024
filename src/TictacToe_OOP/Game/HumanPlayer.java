@@ -1,4 +1,4 @@
-package TictacToe_OOP;
+package TictacToe_OOP.Game;
 
 import java.util.Scanner;
 
@@ -26,11 +26,11 @@ public class HumanPlayer extends Player {
                 System.out.println("Некорректный ввод! Пожалуйста, введите целое число.");
                 continue;
             }
-            if (!board.setMove(row,col,marker)){
+            if (board.setMove(row, col, marker)){
                 System.out.println("Некорректный ввод! Попробуйте еще раз.");
             }
 
-        } while (!board.setMove(row, col, marker));
+        } while (board.setMove(row, col, marker));
     }
 
 }
