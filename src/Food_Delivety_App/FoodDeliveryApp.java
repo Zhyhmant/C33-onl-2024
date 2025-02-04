@@ -5,10 +5,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class FoodDeliveryApp {
-    private JFrame frame;
-    private DefaultListModel<String> cartModel;
-    private JList<String> cartList;
-    private JLabel totalLabel;
+    private final JFrame frame;
+    private final DefaultListModel<String> cartModel;
+    private  JList<String> cartList;
+    private final JLabel totalLabel;
     private HashMap<String,Integer> priceMap;
     private int totalPrice = 0;
 
