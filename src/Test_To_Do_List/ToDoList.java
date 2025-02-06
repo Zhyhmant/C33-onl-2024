@@ -65,7 +65,7 @@ public class ToDoList {
     private void styleButton(JButton button) {
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setFocusPainted(false);
-        button.setBackground(new Color(59, 182, 90));
+        button.setBackground(new Color(17, 31, 204));
         button.setForeground(Color.WHITE);
         button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
     }
