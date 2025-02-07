@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Java8 {
     public static void main(String[] args) {
-        ConvertBynToUsd();
+        ReverseString();
     }
     public static void HundredYearsOld(){
             Scanner scanner = new Scanner(System.in);
@@ -48,5 +50,28 @@ public class Java8 {
         String input = "1234 BYN";
         double USD = convert.apply(input);
         System.out.println(input + " = " + USD + "USD");
+    }
+
+    public static void PrintBynUsd(){
+        double exchangeRate = 0.34;
+
+        Consumer<String> printUSD = input ->{
+            String[] parts = input.split(" ");
+            double BYN = Double.parseDouble(parts[0]);
+            double USD = BYN * exchangeRate;
+            System.out.println(input + " = " + USD + " USD ");
+        };
+        printUSD.accept("100 BYN");
+    }
+
+    public static void ReverseString(){
+        Supplier<String> reverseString = () -> {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter line :");
+            String input = scanner.nextLine();
+            return new StringBuilder(input).reverse().toString();
+        };
+        String reversed = reverseString.get();
+        System.out.println("Line is reverse:" + reversed);
     }
 }
